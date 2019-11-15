@@ -17,6 +17,7 @@ class CreateAdminsTable extends Migration
     {
         Schema::create('admins', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedInteger('role_id')->default(1)->comment('角色ID');
             $table->string('username',50)->default('未知')->comment('账号');
             $table->string('truename',50)->default('未知')->comment('真实姓名');
             $table->string('password',255)->default('未知')->comment('密码');
@@ -25,6 +26,7 @@ class CreateAdminsTable extends Migration
             $table->enum('sex',['先生','女士'])->default('先生')->comment('性别');
             $table->char('last_ip',15)->default('')->comment('登录IP');
             $table->timestamps();
+            $table->rememberToken();
             $table->softDeletes();
         });
     }

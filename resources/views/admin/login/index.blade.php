@@ -7,22 +7,19 @@
     <link href="{{ staticAdminWeb() }}static/h-ui.admin/css/H-ui.login.css" rel="stylesheet" type="text/css"/>
     <link href="{{ staticAdminWeb() }}static/h-ui.admin/css/style.css" rel="stylesheet" type="text/css"/>
     <link href="{{ staticAdminWeb() }}lib/Hui-iconfont/1.0.8/iconfont.css" rel="stylesheet" type="text/css"/>
-    <title>后台登录 - H-ui.admin v3.1</title>
+    <title>登录显示</title>
 </head>
 <body>
 <input type="hidden" id="TenantId" name="TenantId" value=""/>
 <div class="header"></div>
 <div class="loginWraper">
+
     <div id="loginform" class="loginBox">
-        @if($errors->any())
-            @foreach($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        @endif
+
+        @include('admin.public.msg')
 
         <form class="form form-horizontal" action="{{ route('admin.login') }}" method="post">
             @csrf
-
             <div class="row cl">
                 <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60d;</i></label>
                 <div class="formControls col-xs-8">
@@ -47,4 +44,9 @@
 <script type="text/javascript" src="{{ staticAdminWeb() }}lib/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="{{ staticAdminWeb() }}static/h-ui/js/H-ui.min.js"></script>
 </body>
+<script>
+    var timeid = setTimeout(function(){
+        var na1 = document.getElementById('na1').remove();
+    },1000);
+</script>
 </html>

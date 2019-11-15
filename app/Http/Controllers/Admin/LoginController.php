@@ -17,9 +17,17 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
         $bool = auth()->attempt($data);
-        dump($bool);
-        dump(auth()->user());
+//        dd($bool);
+        if(!$bool){
+          return redirect()->back()->withErrors(['error'=>'登录失败']);
+        }
+        return redirect(route('admin.index'));
     }
 
+
+    public function logout(){
+        auth()->logout();
+        return redirect(route('admin.login'))->with(['success' => '退出成功']);
+    }
 
 }
